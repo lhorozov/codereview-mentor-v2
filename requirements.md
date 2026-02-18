@@ -6,11 +6,11 @@
 
 - Next.js (App Router)
 - TypeScript
+- Tailwind + shadcn/ui (UI)
 - tRPC (API implementation)
 - Prisma + SQLite (Database)
 - Zod validation
 - Vercel AI SDK (Streaming)
-- Tailwind + shadcn/ui (UI)
 
 ### **Objective**
 
