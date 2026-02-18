@@ -1,0 +1,29 @@
+{
+  "name": "codereview-mentor-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhorozov/codereview-mentor-v2.git"
+  },
+  "author": "L.Horozov",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.0",
+  "dependencies": {
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "25.2.3",
+    "@types/react": "19.2.14"
+  }
+}
