@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,7 +20,14 @@
   "packageManager": "pnpm@10.30.0",
   "dependencies": {
     "@ai-sdk/react": "^3.0.94",
+    "@prisma/adapter-better-sqlite3": "^7.4.1",
+    "@prisma/client": "^7.4.1",
     "@tailwindcss/postcss": "^4.2.0",
+    "@tanstack/react-query": "^5.90.21",
+    "@trpc/client": "^11.10.0",
+    "@trpc/next": "^11.10.0",
+    "@trpc/react-query": "^11.10.0",
+    "@trpc/server": "^11.10.0",
     "@uiw/react-textarea-code-editor": "^3.1.1",
     "ai": "^6.0.92",
     "class-variance-authority": "^0.7.1",
@@ -37,8 +45,11 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "25.2.3",
     "@types/react": "19.2.14",
+    "dotenv": "^17.3.1",
+    "prisma": "^7.4.1",
     "typescript": "5.9.3"
   }
 }
