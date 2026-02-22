@@ -1,3 +1,6 @@
+'use client';
+
+import { Lang } from "@/app/page";
 import {
   Select,
   SelectContent,
@@ -8,18 +11,22 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function SelectLang() {
+interface SelectLangProps {
+  setLang: React.Dispatch<React.SetStateAction<Lang>>
+}
+
+export function SelectLang({ setLang }: SelectLangProps) {
   return (
-    <Select>
+    <Select onValueChange={(lang: Lang) => setLang(lang)}>
       <SelectTrigger className="w-full max-w-48">
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Languages</SelectLabel>
-          <SelectItem value="js">JavaScript</SelectItem>
-          <SelectItem value="ts">TypeScript</SelectItem>
-          <SelectItem value="py">Python</SelectItem>
+          <SelectItem value="javascript">JavaScript</SelectItem>
+          <SelectItem value="typescript">TypeScript</SelectItem>
+          <SelectItem value="python">Python</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
