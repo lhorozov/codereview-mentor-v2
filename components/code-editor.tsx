@@ -1,8 +1,8 @@
 import Editor from '@uiw/react-textarea-code-editor';
-import { Lang } from "@/app/page";
+import { Language } from '@/shared/schemas/submission';
 
 interface CodeEditorProps {
-    lang: Lang;
+    lang: Language;
     userInput: string;
     setUserInput: React.Dispatch<React.SetStateAction<string>>
 }

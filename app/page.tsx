@@ -6,14 +6,12 @@ import { CodeEditor } from "@/components/code-editor";
 import { SelectLang } from "@/components/select-lang";
 import { Button } from "@/components/ui/button";
 import { Result } from "@/components/result";
-import { LANGUAGES } from "@/lib/constants";
-
-export type Lang = keyof typeof LANGUAGES;
+import { Language, LANGUAGE_OPTIONS } from "@/shared/schemas/submission";
 
 export default function Page() {
   const [userInput, setUserInput] = useState('');
-  const [lang, setLang] = useState<Lang>(
-    'javascript'
+  const [lang, setLang] = useState<Language>(
+    LANGUAGE_OPTIONS[0]
   );
   const [error, setError] = useState('');
 
