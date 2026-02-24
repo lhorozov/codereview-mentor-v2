@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
- 
+import { TRPCProvider } from '@/trpc/client'
+
 export const metadata: Metadata = {
   title: 'Code Review Mentor',
   description: 'The best AI code review tool',
@@ -13,7 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <TRPCProvider>
+        <body>
+          {children}
+        </body>
+      </TRPCProvider>
     </html>
   )
 }

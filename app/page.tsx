@@ -1,34 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { useCompletion } from "@ai-sdk/react";
 import { CodeEditor } from "@/components/code-editor";
 import { SelectLang } from "@/components/select-lang";
 import { Button } from "@/components/ui/button";
 import { Result } from "@/components/result";
 import { Language, LANGUAGE_OPTIONS } from "@/shared/schemas/submission";
+import { trpc } from "@/server/services/trpc";
+import { errorHandler } from "@/trpc/utils";
 
 export default function Page() {
   const [userInput, setUserInput] = useState('');
   const [lang, setLang] = useState<Language>(
     LANGUAGE_OPTIONS[0]
   );
-  const [error, setError] = useState('');
 
-  const { completion, complete, isLoading } = useCompletion({
-    api: '/api/completion',
-    onError: (e) => {
-      setError(e instanceof Error ? e.message : 'Something went wrong');
-    }
+  const utils = trpc.useUtils();
+
+  const { data, isPending, error, mutate } = trpc.create.useMutation({
+    onSuccess: () => utils.getAll.invalidate()
   });
 
-  const onClick = async () => {
-    setError('');
-    await complete(userInput, {
-      body: {
-        language: lang
-      }
-    });
+  const onClick = () => {
+    mutate({ code: userInput, language: lang });
   }
 
   return <main className="flex flex-col items-center p-4 md:p-16 bg-zinc-200 text-zinc-700">
@@ -38,10 +32,10 @@ export default function Page() {
     </div>
     <CodeEditor lang={lang} userInput={userInput} setUserInput={setUserInput} />
     <div className='pt-6'>
-      <Button className='active:scale-[0.96]' onClick={onClick} disabled={!!!userInput}>
-        Review code
+      <Button className='active:scale-[0.96]' onClick={onClick} disabled={isPending}>
+        {isPending ? 'Reviewing...' : 'Review code'}
       </Button>
     </div>
-    <Result isLoading={isLoading} error={error} completion={completion} />
+    <Result isLoading={isPending} error={error && errorHandler(error)} completion={data?.feedback ?? ''} />
   </main>
 }
