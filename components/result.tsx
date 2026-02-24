@@ -2,7 +2,7 @@ import { Skeleton } from './ui/skeleton';
 
 interface ResultProps {
     isLoading: boolean;
-    error: string;
+    error: string | null;
     completion: string;
 }
 
