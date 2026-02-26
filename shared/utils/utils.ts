@@ -1,0 +1,1 @@
+export const truncate = (str: string, chars: number) => `${str.slice(0, chars)}...`;
