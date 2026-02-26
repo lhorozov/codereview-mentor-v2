@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/prisma/prisma";
 import { TRPCError } from '@trpc/server';
 import { LanguageSchema } from '@/shared/schemas/submission';
 import { getOpenAIFeedback } from '@/server/services/openai';
@@ -9,7 +9,7 @@ export const appRouter = router({
     create: publicProcedure
         .input(
             z.object({
-                code: z.string().min(30).max(500),
+                code: z.string().min(30, 'Code is too short (min 30 characters).').max(500, 'Code is too long (max 500 characters).'),
                 language: LanguageSchema,
             }),
         )
@@ -47,7 +47,7 @@ export const appRouter = router({
     getAll: publicProcedure
         .query(async () => {
             try {
-                return await prisma.submission.findMany({ orderBy: { createdAt: 'desc' } });
+                return await prisma.submission.findMany({ orderBy: { createdAt: 'desc' }, take: 10 });
             } catch (error) {
                 const message = error instanceof Error ? error.message : 'Database read failed';
                 throw new TRPCError({
