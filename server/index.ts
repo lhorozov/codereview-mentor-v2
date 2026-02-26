@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/prisma/prisma";
 import { TRPCError } from '@trpc/server';
 import { LanguageSchema } from '@/shared/schemas/submission';
 import { getOpenAIFeedback } from '@/server/services/openai';
