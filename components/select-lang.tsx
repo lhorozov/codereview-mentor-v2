@@ -12,12 +12,12 @@ import {
 import { Language, LANGUAGE_LABELS, LANGUAGE_OPTIONS } from "@/shared/schemas/submission";
 
 interface SelectLangProps {
-  setLang: React.Dispatch<React.SetStateAction<Language>>
+  setLang: (lang: Language) => void;
 }
 
 export function SelectLang({ setLang }: SelectLangProps) {
   return (
-    <Select onValueChange={(lang: Language) => setLang(lang)}>
+    <Select onValueChange={setLang}>
       <SelectTrigger className="w-full max-w-48">
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>

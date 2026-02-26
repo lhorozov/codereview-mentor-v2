@@ -2,18 +2,18 @@ import Editor from '@uiw/react-textarea-code-editor';
 import { Language } from '@/shared/schemas/submission';
 
 interface CodeEditorProps {
-    lang: Language;
+    lang?: Language;
     userInput: string;
-    setUserInput: React.Dispatch<React.SetStateAction<string>>
+    handleUserInput: (text: string) => void;
 }
 
-export function CodeEditor({ lang, userInput, setUserInput }: CodeEditorProps) {
+export function CodeEditor({ lang, userInput, handleUserInput }: CodeEditorProps) {
     return (
         <Editor
             value={userInput}
             language={lang}
             placeholder={`Paste your code here...`}
-            onChange={(e) => setUserInput(e.target.value)}
+            onChange={(e) => handleUserInput(e.target.value)}
             padding={15}
             style={{
                 borderRadius: '8px',

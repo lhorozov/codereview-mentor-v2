@@ -17,7 +17,7 @@ export function Result({ isLoading, error, completion }: ResultProps) {
 
   if (error) {
     return (
-      <div className="w-full p-6 mt-6 rounded-lg bg-red-50 text-red-700">
+      <div className="text-sm w-full p-4 mt-6 rounded-lg bg-red-50 text-red-700">
         {error}
       </div>
     );
